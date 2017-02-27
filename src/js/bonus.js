@@ -16,12 +16,12 @@ Human.prototype.buy = function (coffee) {
 
 Human.prototype.drink = function () {
   this.coffee.full = false;
-  this.coffee.empty = false;
   this.alertness += 0.31;
 };
 
 function Coffee () {
   this.full = true;
+  this.empty = false;
 }
 
 // Do not ADD or MODIFY code below this line :D
