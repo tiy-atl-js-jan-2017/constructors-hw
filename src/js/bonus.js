@@ -3,15 +3,20 @@ import {it, expect} from "./test_lib";
 // Constructors
 // Only add code to *THIS* section!
 
-///
-///
-///
-///
+function Human () {
+  console.log(this);
+  this.message = "hey y'all. it's monday aren't ya glad?";
+  this.alertness = 0;
+}
+
+function Coffee () {
+}
 
 // Do not ADD or MODIFY code below this line :D
 
 it("should be sleepy at first", function () {
   let marie = new Human("Marie");
+  console.log(marie);
   expect(marie.alertness < 0.1).toBe(true);
 });
 
