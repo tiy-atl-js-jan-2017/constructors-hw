@@ -4,9 +4,9 @@ import {it, expect} from "./test_lib";
 // Only add code to *THIS* section!
 
 function Human () {
-  console.log(this);
-  this.message = "hey y'all. it's monday aren't ya glad?";
   this.alertness = 0;
+  this.hasCoffee = false;
+  this.needsCoffee = true;
 }
 
 function Coffee () {
@@ -16,7 +16,6 @@ function Coffee () {
 
 it("should be sleepy at first", function () {
   let marie = new Human("Marie");
-  console.log(marie);
   expect(marie.alertness < 0.1).toBe(true);
 });
 
