@@ -12,11 +12,15 @@ function Human () {
 
 Human.prototype.buy = function (coffee) {
   this.coffee = coffee;
+  this.hasCoffee = true;
 };
 
 Human.prototype.drink = function () {
   this.coffee.full = false;
   this.alertness += 0.31;
+  if (this.alertness > 0.9) {
+    this.coffee.empty = true;
+  }
 };
 
 function Coffee () {
