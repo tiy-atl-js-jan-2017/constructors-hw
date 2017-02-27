@@ -17,15 +17,18 @@ Human.prototype.buy = function (coffee) {
 
 Human.prototype.drink = function () {
   this.coffee.full = false;
-  this.alertness += 0.31;
-  if (this.alertness > 0.9) {
+  this.coffee.sips -= 1; // this.coffee.sips = this.coffee.sips - 1;
+  if (this.coffee.sips === 0) {
     this.coffee.empty = true;
   }
+
+  this.alertness += 0.31;
 };
 
 function Coffee () {
   this.full = true;
   this.empty = false;
+  this.sips = 3;
 }
 
 // Do not ADD or MODIFY code below this line :D
