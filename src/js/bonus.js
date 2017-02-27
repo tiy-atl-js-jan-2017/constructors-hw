@@ -7,9 +7,21 @@ function Human () {
   this.alertness = 0;
   this.hasCoffee = false;
   this.needsCoffee = true;
+  // console.log(Human.prototype === this.__proto__);
 }
 
+Human.prototype.buy = function (coffee) {
+  this.coffee = coffee;
+};
+
+Human.prototype.drink = function () {
+  this.coffee.full = false;
+  this.coffee.empty = false;
+  this.alertness += 0.31;
+};
+
 function Coffee () {
+  this.full = true;
 }
 
 // Do not ADD or MODIFY code below this line :D
