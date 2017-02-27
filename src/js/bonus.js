@@ -10,26 +10,25 @@ function Human () {
   // console.log(Human.prototype === this.__proto__);
 }
 
+// let artem = new Human(); // build
+// artem.buy(coffee); // using
+
 Human.prototype.buy = function (coffee) {
   this.coffee = coffee;
   this.hasCoffee = true;
 };
 
 Human.prototype.drink = function () {
-  this.coffee.full = false;
-  this.coffee.sips -= 1; // this.coffee.sips = this.coffee.sips - 1;
-  if (this.coffee.sips === 0) {
-    this.coffee.empty = true;
-  }
-
+  this.coffee.sips -= 1;
   this.alertness += 0.31;
 };
 
 function Coffee () {
-  this.full = true;
-  this.empty = false;
   this.sips = 3;
 }
+
+Coffee.prototype.isFull = function () { return this.sips === 3; };
+Coffee.prototype.isEmpty = function () { return this.sips === 0; };
 
 // Do not ADD or MODIFY code below this line :D
 
@@ -47,14 +46,14 @@ it("needs coffee to wake up", function () {
 it("can drink coffee to become more alive", function () {
   let kurt = new Human("Kurt");
   let omf = new Coffee("Orange Mocha Frappucino");
-  expect(omf.full).toBe(true);
+  expect(omf.isFull()).toBe(true);
 
   kurt.buy(omf);
   kurt.drink();
   expect(kurt.alertness > 0.3 && kurt.alertness < 0.4).toBe(true);
-  expect(omf.full).toBe(false);
 
-  expect(omf.empty).toBe(false);
+  expect(omf.isFull()).toBe(false);
+  expect(omf.isEmpty()).toBe(false);
 });
 
 it("has coffee after buying it", function () {
@@ -72,6 +71,6 @@ it("can drink all the coffee", function () {
   for(let i = 0; i < 3; i++) {
     cory.drink();
   }
-  expect(tsmf.empty).toBe(true);
+  expect(tsmf.isEmpty()).toBe(true);
   expect(cory.alertness > 0.9).toBe(true);
 });
