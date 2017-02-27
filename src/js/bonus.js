@@ -5,8 +5,6 @@ import {it, expect} from "./test_lib";
 
 function Human () {
   this.alertness = 0;
-  this.hasCoffee = false;
-  this.needsCoffee = true;
   // console.log(Human.prototype === this.__proto__);
 }
 
@@ -15,8 +13,10 @@ function Human () {
 
 Human.prototype.buy = function (coffee) {
   this.coffee = coffee;
-  this.hasCoffee = true;
 };
+
+Human.prototype.hasCoffee = function () { return this.coffee !== undefined; };
+Human.prototype.needsCoffee = function () { return !this.hasCoffee(); };
 
 Human.prototype.drink = function () {
   this.coffee.sips -= 1;
@@ -39,8 +39,8 @@ it("should be sleepy at first", function () {
 
 it("needs coffee to wake up", function () {
   let artem = new Human("Artem");
-  expect(artem.hasCoffee).toBe(false);
-  expect(artem.needsCoffee).toBe(true);
+  expect(artem.hasCoffee()).toBe(false);
+  expect(artem.needsCoffee()).toBe(true);
 });
 
 it("can drink coffee to become more alive", function () {
@@ -59,9 +59,9 @@ it("can drink coffee to become more alive", function () {
 it("has coffee after buying it", function () {
   let tyler = new Human("Tyler");
   let cuban_blend = new Coffee("Fancy Cuban Blend");
-  expect(tyler.hasCoffee).toBe(false);
+  expect(tyler.hasCoffee()).toBe(false);
   tyler.buy(cuban_blend);
-  expect(tyler.hasCoffee).toBe(true);
+  expect(tyler.hasCoffee()).toBe(true);
 });
 
 it("can drink all the coffee", function () {
